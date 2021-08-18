@@ -1,0 +1,36 @@
+{
+  "extends": [
+    "tslint:recommended"
+  ],
+  "defaultSeverity": "warn",
+  "rules": {
+    "interface-name": false,
+    "max-classes-per-file": false,
+    "indent": [true, "spaces", 2],
+    "no-consecutive-blank-lines": false,
+    "quotemark": [true, "single"],
+    "no-console": [true, "log", "warn", "error", "dir"],
+    "no-constant-condition": false,
+    "no-debugger": true,
+    "no-duplicate-switch-case": true,
+    "no-var-requires": false,
+    "no-switch-case-fall-through": true,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "prefer-const": [true, { "destructuring": "all" }],
+    "variable-name": {
+      "options": [
+        "allow-leading-underscore",
+        "ban-keywords",
+        "check-format",
+        "allow-pascal-case"
+      ]
+    }
+  },
+  "linterOptions": {
+    "exclude": [
+      "./node_modules/**/*",
+      "**/*.json"
+    ]
+  }
+}
