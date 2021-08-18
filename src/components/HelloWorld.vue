@@ -13,7 +13,6 @@
           item-text="name"
           item-value="symbol"
           label="Search for a coin..."
-          solo
         >
           <template v-slot:no-data>
             <v-list-item>
@@ -81,19 +80,20 @@ export default {
       }
     },
     search(val) {
-      // Items have already been loaded
-      if (this.items.length > 0) return;
-
-      this.isLoading = true;
-
-      // Lazily load input items
-      fetch('https://api.coingecko.com/api/v3/coins/list')
-        .then((res) => res.clone().json())
-        .then((res) => {
-          this.items = res;
-        })
-        .finally(() => (this.isLoading = false));
-    },
+      this.searchData()
+    }
   },
+  methods: {
+    searchData() {
+       this.isLoading = true;
+        fetch('https://api.coingecko.com/api/v3/coins/list')
+          .then((res) => res.clone().json())
+          .then((res) => {
+            this.items = res;
+          })
+          .finally(() => (this.isLoading = false));
+
+    }
+  }
 };
 </script>
