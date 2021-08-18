@@ -16,7 +16,9 @@
         >
           <template v-slot:no-data>
             <v-list-item>
-              <v-list-item-title> Search for <strong>Cryptocurrency</strong> </v-list-item-title>
+              <v-list-item-title>
+                Search for <strong>Cryptocurrency</strong>
+              </v-list-item-title>
             </v-list-item>
           </template>
           <template v-slot:progress>
@@ -67,33 +69,29 @@ export default {
     items: [],
     model: null,
     search: null,
-    tab: null,
   }),
 
   watch: {
-    model(val) {
-      if (val != null) {
-        this.tab = 0;
-      }
-      else {
-        this.tab = null;
-      }
+    search() {
+      this.searchData();
     },
-    search(val) {
-      this.searchData()
-    }
   },
   methods: {
     searchData() {
-       this.isLoading = true;
-        fetch('https://api.coingecko.com/api/v3/coins/list')
+      let timer = this.searchData.timer;
+      if (timer) {
+        clearTimeout(timer);
+      }
+      this.searchData.timer = setTimeout(() => {
+        this.isLoading = true;
+        fetch("https://api.coingecko.com/api/v3/coins/list")
           .then((res) => res.clone().json())
           .then((res) => {
             this.items = res;
           })
           .finally(() => (this.isLoading = false));
-
-    }
-  }
+      }, 800);
+    },
+  },
 };
 </script>
