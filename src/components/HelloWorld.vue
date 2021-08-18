@@ -20,6 +20,12 @@
               <v-list-item-title> Search for <strong>Cryptocurrency</strong> </v-list-item-title>
             </v-list-item>
           </template>
+          <template v-slot:progress>
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </template>
           <template v-slot:selection="{ attr, on, item, selected }">
             <v-chip
               v-bind="attr"
